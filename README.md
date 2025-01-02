@@ -112,14 +112,24 @@ Para eliminar todo con los .o incluido:
 
 make fclean
 ```
-
+Idea para la main:
+main()
+{
+	ft_init_pipex()
+	ft_check_args()
+	ft_parse_cmds()
+	ft_parse_args()
+	while (cmds)
+		ft_exec()
+	ft_cleanup()
+}
 ---
 
 ## Recursos y enlaces
 - [Manuales de funciones permitidas](https://man7.org/linux/man-pages/)
 - [Introducción a pipes en Unix](https://www.geeksforgeeks.org/pipe-system-call/)
 - [Norma de 42](https://github.com/42School/norminette)
-
+- [Guia sobre Pipex]https://reactive.so/post/42-a-comprehensive-guide-to-pipex/
 ---
 
 **Autor:** [Chatgpt me esta ayudando mucho pero soy, el autor, Álvaro]
