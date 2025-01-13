@@ -1,6 +1,7 @@
 # Pipex
 # Pipex
 
+
 Este repositorio contiene la implementación del proyecto **Pipex** de 42 School. El objetivo es entender el funcionamiento de los pipes en Unix, conectando la salida de un comando con la entrada de otro. Aquí encontrarás todo lo necesario para comprender y ejecutar el proyecto, incluyendo ejemplos prácticos y explicaciones detalladas.
 
 ---
