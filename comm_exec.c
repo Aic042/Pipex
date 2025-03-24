@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:24:35 by root              #+#    #+#             */
-/*   Updated: 2025/03/24 10:39:23 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/03/24 11:48:35 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int execute_command(char *s, char **envp)
 {
+	envp = NULL;
+	
 	if(s == NULL)
 		return 1;
 	
