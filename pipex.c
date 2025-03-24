@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:17 by root              #+#    #+#             */
-/*   Updated: 2025/03/23 18:07:26 by root             ###   ########.fr       */
+/*   Updated: 2025/03/24 10:15:34 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,13 @@ int main(int argc, char **argv, char **envp)
         perror("Error opening infile");
         return 1;
     }
-	fork_checker(int infile, int outfile, int pipefd[2], char **argv, char **envp); 
+    int outfile = open(argv[2], O_RDONLY);
+    if (infile < 0) {
+        perror("Error opening infile");
+        return 1;
+    }
+    int pipefd[2];
+	fork_checker(infile, outfile, pipefd[2], **argv, **envp); 
     int outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (outfile < 0) {
         perror("Error opening outfile");
@@ -32,7 +38,6 @@ int main(int argc, char **argv, char **envp)
         return 1;
     }
 
-    int pipefd[2];
     if (pipe(pipefd) < 0) {
         perror("Pipe failed");
         close(infile);
