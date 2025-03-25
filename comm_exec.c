@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   comm_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:24:35 by root              #+#    #+#             */
-/*   Updated: 2025/03/24 11:48:35 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:25:14 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int execute_command(char *s, char **envp)
-{
-	envp = NULL;
-	
-	if(s == NULL)
-		return 1;
-	
-	return 0;
+void execute_command(char *s)
+{	
+	execve(s, );
 }

@@ -32,7 +32,7 @@ $(NAME): $(OBJS)
 	cc $(OBJS) -L$(LIBFT) -lft -o $(NAME)
 
 fun_msg:
-	@echo "$(GREEN)$(shell shuf -n 1 -e 'Build complete! 🚀' 'Time to play! 🎮' 'so_long is ready! ✅')$(RESET)"
+	@echo "$(GREEN)$(shell shuf -n 1 -e 'Build complete! 🚀' 'Time to sort! 🎮' 'Push_swap is ready! ✅')$(RESET)"
 
 clean:
 	@echo "$(YELLOW)🧹 Cleaning object files...$(RESET)"
