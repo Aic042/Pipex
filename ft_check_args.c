@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:12 by root              #+#    #+#             */
-/*   Updated: 2025/03/25 20:22:39 by root             ###   ########.fr       */
+/*   Updated: 2025/03/26 16:21:48 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,35 @@ void	check_coms(int argc, char **argv)
 	}
 }
 
-int check_files(char *infile, char *outfile)
+int	check_files(char *infile)
 {
 	if (access(infile, F_OK) == -1)
 	{
 		ft_printf("Error: %s: No such file or directory\n", infile);
 		return (1);
 	}
-	// if (access(outfile, F_OK) == -1)
-	// {
-	// 	ft_printf("Error: %s: No such file or directory\n", outfile);
-	// 	return (1);
-	// }
-	// Debo crear el archivo de regreso "outfile", no verificar si existe. Si existe utiliza el O_TRUNC.
 	return (0);
+}
+
+void	duplikate(int infile, int outfile)
+{
+	if (dup2(infile, STDIN_FILENO) == -1)
+		exit(1);
+	if (dup2(outfile, STDOUT_FILENO) == -1)
+		exit(1);
+	close(infile);
+	close(outfile);
 }
 
 int	main(int argc, char **argv)
 {
+	int	fd_in;
+	int	fd_out;
+
 	check_coms(argc, argv);
-	check_files(argv[1], argv[4]);
-	execute_command(argv[2]);
-	execute_command(argv[3]);
-	return 0;
+	check_files(argv[1]);
+	fd_in = open(argv[1], O_RDONLY);
+	fd_out = open(argv[4], O_WRONLY, O_TRUNC, O_CREAT);
+	duplikate(fd_in, fd_out);
+	return (0);
 }
