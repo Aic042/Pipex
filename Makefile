@@ -16,6 +16,14 @@ RESET  := \033[0m
 
 all: loading  libft $(NAME) fun_msg
 
+	@echo "$(BLUE)"
+	@echo "██████╗ ██╗██████╗ ███████╗██╗  ██╗"
+	@echo "██╔══██╗██║██╔══██╗██╔════╝╚██╗██╔╝"
+	@echo "██████╔╝██║██████╔╝█████╗   ╚███╔╝ "
+	@echo "██╔═══╝ ██║██╔══   ██╔══╝   ██╔██╗ "
+	@echo "██║     ██║██║     ███████╗██╔╝ ██╗"
+	@echo "╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝"
+	@echo "$(RESET)"
 loading:
 	@echo -n "Building"; for i in {1..3}; do sleep 0.3; echo -n "."; done; echo " 🚀"
 

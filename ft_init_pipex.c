@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_pipex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:04 by root              #+#    #+#             */
-/*   Updated: 2025/03/30 23:27:29 by root             ###   ########.fr       */
+/*   Updated: 2025/03/31 12:01:34 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	exit_handler(int n_exit)
-{
-	if (n_exit == 1)
-		printf("Error de salida: Salida inesperada");
-	exit(0);
-}
+// int	exit_handler(int n_exit)
+// {
+// 	if (n_exit == 1)
+// 		printf("Error de salida: Salida inesperada");
+// 	exit(0);
+// }
 
 void	child(char **argv, int *p_fd, char **env)
 {
@@ -41,19 +41,9 @@ void	parent(char **argv, int *p_fd, char **env)
 	exec(argv[3], env);
 }
 
-int	main(int ac, char **av, char **env)
+void	ft_init_pipex(char **argv, int *p_fd, char **env)
 {
-	int		p_fd[2];
-	pid_t	pid;
-
-	if (ac != 5)
-		exit_handler(1);
-	if (pipe(p_fd) == -1)
-		exit(-1);
-	pid = fork();
-	if (pid == -1)
-		exit(-1);
-	if (!pid)
-		child(av, p_fd, env);
-	parent(av, p_fd, env);
+	child(argv, p_fd, env);
+	parent(argv, p_fd, env);
 }
+
