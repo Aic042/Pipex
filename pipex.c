@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 10:39:22 by aingunza          #+#    #+#             */
-/*   Updated: 2025/04/01 19:17:55 by root             ###   ########.fr       */
+/*   Updated: 2025/04/02 00:00:15 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ int main(int argc, char **argv, char **env)
     }
     ft_parse_cmds(argv, env); // Update this to use infile/outfile if needed
     ft_cleanup(infile, outfile, p_fd);
+    // wait(NULL);
+    // wait(NULL);
     return (0);
 }
