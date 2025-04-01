@@ -6,30 +6,11 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:12 by root              #+#    #+#             */
-/*   Updated: 2025/03/30 23:21:20 by root             ###   ########.fr       */
+/*   Updated: 2025/04/01 13:50:50 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	check_coms(int argc, char **argv)
-{
-	if (argc != 5)
-	{
-		ft_printf("Argument error: Usage: ./pipex infile cmd1 cmd2 outfile\n");
-		exit(1);
-	}
-	if (strlen(argv[2]) == 0)
-	{
-		ft_printf("Error: Command 1 is empty\n");
-		exit(1);
-	}
-	if (strlen(argv[3]) == 0)
-	{
-		ft_printf("Error: Command 2 is empty\n");
-		exit(1);
-	}
-}
 
 int	check_files(char *infile)
 {
@@ -39,4 +20,28 @@ int	check_files(char *infile)
 		return (1);
 	}
 	return (0);
+}
+
+void ft_check_args(int argc, char **argv)
+{
+    if (argc != 5)
+    {
+        ft_printf("Argument error: Usage: ./pipex infile cmd1 cmd2 outfile\n");
+        exit(1);
+    }
+    if (ft_strlen(argv[2]) == 0)
+    {
+        ft_printf("Error: Command 1 is empty\n");
+        exit(1);
+    }
+    if (ft_strlen(argv[3]) == 0)
+    {
+        ft_printf("Error: Command 2 is empty\n");
+        exit(1);
+    }
+    if (access(argv[1], F_OK) == -1)
+    {
+        ft_printf("Error: %s: No such file or directory\n", argv[1]);
+        exit(1);
+    }
 }

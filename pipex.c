@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 10:39:22 by aingunza          #+#    #+#             */
-/*   Updated: 2025/03/31 12:01:10 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:17:55 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,25 @@
 
 int main(int argc, char **argv, char **env)
 {
-	int		p_fd[2];
-	int		infile;
-	int		outfile;
+    int infile;
+    int outfile;
+    int p_fd[2];
 
-	ft_init_pipex(infile, outfile, p_fd, argv);
-	ft_check_args(argc, argv);
-	ft_parse_cmds(argv, env);
-	ft_cleanup(infile, outfile, p_fd);
-	return (0);
-}
-
-int     main(int ac, char **av, char **env)
-{
-		int		p_fd[2];
-        pid_t   pid;
-
-        if (ac != 5)
-                exit_handler(1);
-        if (pipe(p_fd) == -1)
-                exit(-1);
-        pid = fork();
-        if (pid == -1)
-                exit(-1);
-        if (!pid)
-                child(av, p_fd, env);
-        parent(av, p_fd, env);
+    ft_check_args(argc, argv); // Exits on invalid args
+    infile = open(argv[1], O_RDONLY);
+    if (infile == -1)
+    {
+        ft_printf("Error: %s: No such file or directory\n", argv[1]);
+        exit(1);
+    }
+    outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (outfile == -1)
+    {
+        ft_printf("Error: %s: Failed to create/open output file\n", argv[4]);
+        close(infile);
+        exit(1);
+    }
+    ft_parse_cmds(argv, env); // Update this to use infile/outfile if needed
+    ft_cleanup(infile, outfile, p_fd);
+    return (0);
 }
