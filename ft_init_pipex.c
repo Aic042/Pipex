@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_pipex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:04 by root              #+#    #+#             */
-/*   Updated: 2025/04/02 08:53:19 by root             ###   ########.fr       */
+/*   Updated: 2025/04/02 15:26:40 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	exit_handler(int n_exit)
 {
 	if (n_exit == 1)
 		printf("Error de salida: Salida inesperada");
-	exit(0);
+	exit(127);
 }
 
 void	child(char **argv, int *p_fd, char **env)

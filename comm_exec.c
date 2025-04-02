@@ -3,37 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   comm_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:24:35 by root              #+#    #+#             */
-/*   Updated: 2025/04/02 08:54:23 by root             ###   ########.fr       */
+/*   Updated: 2025/04/02 16:49:59 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char *path_finder(char *cmd, char **env)
+char	*path_finder(char *cmd, char **env)
 {
-    int i = 0;
-    char *exec;
-    char **allpath = ft_split(get_env("PATH", env), ':');
-    char **s_cmd = ft_split(cmd, ' ');
-    while (allpath[i])
-    {
-        char *path_part = ft_strjoin(allpath[i], "/");
-        exec = ft_strjoin(path_part, s_cmd[0]);
-        free(path_part);
-        if (access(exec, F_OK | X_OK) == 0)
-        {
-            ft_free_str(s_cmd);
-            return (exec);
-        }
-        free(exec);
-        i++;
-    }
-    ft_free_str(allpath);
-    ft_free_str(s_cmd);
-    return (cmd);
+	int		i;
+	char	*exec;
+	char	**allpath;
+	char	**s_cmd;
+	char	*path_part;
+
+	i = 0;
+	allpath = ft_split(get_env("PATH", env), ':');
+	s_cmd = ft_split(cmd, ' ');
+	while (allpath[i])
+	{
+		path_part = ft_strjoin(allpath[i], "/");
+		exec = ft_strjoin(path_part, s_cmd[0]);
+		free(path_part);
+		if (access(exec, F_OK | X_OK) == 0)
+		{
+			ft_free_str(s_cmd);
+			return (exec);
+		}
+		free(exec);
+		i++;
+	}
+	ft_free_str(allpath);
+	ft_free_str(s_cmd);
+	return (cmd);
 }
 
 void	exec(char *cmd, char **env)
@@ -69,4 +74,3 @@ char	*get_env(char *name, char **env)
 	}
 	return (NULL);
 }
-
