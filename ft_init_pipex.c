@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:04 by root              #+#    #+#             */
-/*   Updated: 2025/04/01 19:21:19 by root             ###   ########.fr       */
+/*   Updated: 2025/04/02 08:53:19 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,29 @@ void	parent(char **argv, int *p_fd, char **env)
 	exec(argv[3], env);
 }
 
-void ft_parse_cmds(char **argv, char **env)
+void	ft_parse_cmds(char **argv, char **env, int *p_fd)
 {
-    pid_t pid1;
-    pid_t pid2;
-    int p_fd[2];
+	pid_t	pid1;
+	pid_t	pid2;
 
-    if (pipe(p_fd) == -1)
-        exit_handler(1);
-    pid1 = fork();
-    if (pid1 == 0)
-    {
-        close(p_fd[0]);
-        dup2(open(argv[1], O_RDONLY), STDIN_FILENO);
-        dup2(p_fd[1], STDOUT_FILENO);
-        close(p_fd[1]);
-        exec(argv[2], env);
-    }
-    pid2 = fork();
-    if (pid2 == 0)
-    {
-        close(p_fd[1]);
-        dup2(p_fd[0], STDIN_FILENO);
-        dup2(open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644), STDOUT_FILENO);
-        close(p_fd[0]);
-        exec(argv[3], env);
-    }
+	if (pipe(p_fd) == -1)
+		exit_handler(1);
+	pid1 = fork();
+	if (pid1 == 0)
+	{
+		close(p_fd[0]);
+		dup2(open(argv[1], O_RDONLY), STDIN_FILENO);
+		dup2(p_fd[1], STDOUT_FILENO);
+		close(p_fd[1]);
+		exec(argv[2], env);
+	}
+	pid2 = fork();
+	if (pid2 == 0)
+	{
+		close(p_fd[1]);
+		dup2(p_fd[0], STDIN_FILENO);
+		dup2(open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644), STDOUT_FILENO);
+		close(p_fd[0]);
+		exec(argv[3], env);
+	}
 }

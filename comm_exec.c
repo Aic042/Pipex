@@ -6,11 +6,35 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:24:35 by root              #+#    #+#             */
-/*   Updated: 2025/04/01 19:37:04 by root             ###   ########.fr       */
+/*   Updated: 2025/04/02 08:54:23 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+char *path_finder(char *cmd, char **env)
+{
+    int i = 0;
+    char *exec;
+    char **allpath = ft_split(get_env("PATH", env), ':');
+    char **s_cmd = ft_split(cmd, ' ');
+    while (allpath[i])
+    {
+        char *path_part = ft_strjoin(allpath[i], "/");
+        exec = ft_strjoin(path_part, s_cmd[0]);
+        free(path_part);
+        if (access(exec, F_OK | X_OK) == 0)
+        {
+            ft_free_str(s_cmd);
+            return (exec);
+        }
+        free(exec);
+        i++;
+    }
+    ft_free_str(allpath);
+    ft_free_str(s_cmd);
+    return (cmd);
+}
 
 void	exec(char *cmd, char **env)
 {
@@ -23,7 +47,7 @@ void	exec(char *cmd, char **env)
 	{
 		ft_putstr_fd("pipex: command not found : ", 2);
 		ft_putendl_fd(s_cmd[0], 2);
-		ft_free_tab(s_cmd);
+		ft_free_str(s_cmd);
 		exit(127);
 	}
 }
@@ -46,31 +70,3 @@ char	*get_env(char *name, char **env)
 	return (NULL);
 }
 
-char	*path_finder(char *cmd, char **env)
-{
-	int		i;
-	char	*exec;
-	char	**allpath;
-	char	*path_part;
-	char	**s_cmd;
-
-	i = -1;
-	allpath = ft_split(get_env("PATH", env), ':');
-	s_cmd = ft_split(cmd, ' ');
-	while (allpath[i])
-	{
-		++i;
-		path_part = ft_strjoin(allpath[i], "/");
-		exec = ft_strjoin(path_part, s_cmd[0]);
-		free(path_part);
-		if (access(exec, F_OK | X_OK) == 0)
-		{
-			ft_free_tab(s_cmd);
-			return (exec);
-		}
-		free (exec);
-	}
-	ft_free_tab (allpath);
-	ft_free_tab (s_cmd);
-	return (cmd);
-}
