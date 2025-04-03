@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 12:01:02 by root              #+#    #+#             */
-/*   Updated: 2025/04/02 08:53:37 by root             ###   ########.fr       */
+/*   Updated: 2025/04/03 19:03:10 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_init_pipex(int *p_fd, char **argv);
 void	ft_check_args(int argc, char **argv);
 void	ft_parse_cmds(char **argv, char **env, int *p_fd);
 void	ft_cleanup(int infile, int outfile, int *p_fd);
+void	ft_check_outfile_permissions(const char *file);
 void	exec(char *cmd, char **env);
 char	*path_finder(char *cmd, char **env);
 char	*get_env(char *name, char **env);
