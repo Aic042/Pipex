@@ -1,0 +1,23 @@
+ outfile
+42_pipex_tester
+Makefile
+README.md
+comm_exec.c
+comm_exec.o
+error_comparator
+error_tracker
+ft_check_args.c
+ft_check_args.o
+ft_cleanup.c
+ft_cleanup.o
+ft_init_pipex.c
+ft_init_pipex.o
+infile
+last_err_log.txt
+libft
+outfile
+outfiles
+pipex
+pipex.c
+pipex.h
+pipex.o

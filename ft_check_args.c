@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:12 by root              #+#    #+#             */
-/*   Updated: 2025/04/02 15:29:24 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:27:44 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,5 @@ void	ft_check_args(int argc, char **argv)
 	{
 		ft_printf("Error: Command 2 is empty\n");
 		exit(127);
-	}
-	if (access(argv[1], F_OK) == -1)
-	{
-		ft_printf("Error: %s: No such file or directory\n", argv[1]);
-		exit(1);
 	}
 }

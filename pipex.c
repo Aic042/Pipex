@@ -3,44 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 10:39:22 by aingunza          #+#    #+#             */
-/*   Updated: 2025/04/02 16:50:58 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:19:08 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **env)
-{
-	int	infile;
-	int	outfile;
-	int	p_fd[2];
+#include "pipex.h"
 
-	ft_check_args(argc, argv);
-	infile = open(argv[1], O_RDONLY);
-	if (infile == -1)
-	{
-		ft_printf("Error: %s: No such file or directory\n", argv[1]);
-		exit(1);
-	}
-	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (outfile == -1)
-	{
-		ft_printf("Error: %s: Failed to create/open output file\n", argv[4]);
-		close(infile);
-		exit(1);
-	}
-	if (pipe(p_fd) == -1)
-	{
-		ft_printf("Error: pipe creation failed\n");
-		ft_cleanup(infile, outfile, NULL);
-		exit(1);
-	}
-	ft_parse_cmds(argv, env, p_fd);
-	ft_cleanup(infile, outfile, p_fd);
-	wait(NULL);
-	wait(NULL);
-	return (0);
+int     main(int argc, char **argv, char **env)
+{
+    int     p_fd[2];
+    int     status;
+    pid_t   pid;
+
+    ft_check_args(argc, argv);
+    ft_parse_cmds(argv, env, p_fd);
+    pid = waitpid(-1, &status, 0);
+    while (pid > 0)
+        pid = waitpid(-1, &status, 0);
+    if (WIFEXITED(status))
+        return (WEXITSTATUS(status));
+    return (0);
 }
