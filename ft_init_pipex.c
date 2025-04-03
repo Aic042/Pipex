@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_pipex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:04 by root              #+#    #+#             */
-/*   Updated: 2025/04/03 16:27:30 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/04 00:02:07 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	child(char **argv, int *p_fd, char **env)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
+        ft_putstr_fd("pipex: ", 2);
+        ft_putstr_fd(argv[1], 2);
+        ft_putendl_fd(": No such file or directory", 2);
 		ft_printf("Error: %s: No such file or directory\n", argv[1]);
 		exit(1);
 	}
