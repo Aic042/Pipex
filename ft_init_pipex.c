@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_pipex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:04 by root              #+#    #+#             */
-/*   Updated: 2025/04/04 00:02:07 by root             ###   ########.fr       */
+/*   Updated: 2025/04/04 11:34:54 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	child(char **argv, int *p_fd, char **env)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
-        ft_putstr_fd("pipex: ", 2);
-        ft_putstr_fd(argv[1], 2);
-        ft_putendl_fd(": No such file or directory", 2);
-		ft_printf("Error: %s: No such file or directory\n", argv[1]);
+		ft_putstr_fd("pipex: ", 2);
+		ft_putstr_fd(argv[1], 2);
+		ft_putendl_fd(": No such file or directory", 2);
+		// ft_printf("Error: %s: No such file or directory\n", argv[1]);
 		exit(1);
 	}
 	if (dup2(fd, STDIN_FILENO) == -1)
@@ -47,7 +47,7 @@ void	parent(char **argv, int *p_fd, char **env)
 	int	fd;
 
 	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd == -1)
+	if (fd < 0)
 	{
 		ft_printf("Error: %s: Failed to create/open output file\n", argv[4]);
 		exit(1);

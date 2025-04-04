@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 10:39:22 by aingunza          #+#    #+#             */
-/*   Updated: 2025/04/03 23:31:16 by root             ###   ########.fr       */
+/*   Updated: 2025/04/04 11:55:57 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv, char **env)
 	pid_t	pid;
 
 	ft_check_args(argc, argv);
-	// ft_check_outfile_permissions(argv[4]);
+	ft_check_outfile_permissions(argv[4]);
 	ft_parse_cmds(argv, env, p_fd);
 	pid = waitpid(-1, &status, 0);
 	while (pid > 0)

@@ -6,13 +6,14 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 12:01:02 by root              #+#    #+#             */
-/*   Updated: 2025/04/03 19:03:10 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/04 10:40:33 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
+# include <stdlib.h>  
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:12 by root              #+#    #+#             */
-/*   Updated: 2025/04/03 22:25:38 by root             ###   ########.fr       */
+/*   Updated: 2025/04/04 11:58:28 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_check_outfile_permissions(const char *file)
 		if (access(file, W_OK) == -1)
 		{
 			perror("Error");
-			exit(EXIT_FAILURE);
+			// exit(EXIT_FAILURE);
 		}
 	}
 	else
