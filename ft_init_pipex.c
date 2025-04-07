@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:04 by root              #+#    #+#             */
-/*   Updated: 2025/04/04 11:34:54 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:53:25 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	exit_handler(int n_exit)
 	exit(127);
 }
 
-void	child(char **argv, int *p_fd, char **env)
+void	children(char **argv, int *p_fd, char **env)
 {
 	int	fd;
 
@@ -29,7 +29,6 @@ void	child(char **argv, int *p_fd, char **env)
 		ft_putstr_fd("pipex: ", 2);
 		ft_putstr_fd(argv[1], 2);
 		ft_putendl_fd(": No such file or directory", 2);
-		// ft_printf("Error: %s: No such file or directory\n", argv[1]);
 		exit(1);
 	}
 	if (dup2(fd, STDIN_FILENO) == -1)
@@ -76,7 +75,7 @@ void	ft_parse_cmds(char **argv, char **env, int *p_fd)
 	if (pid1 == -1)
 		exit(1);
 	if (pid1 == 0)
-		child(argv, p_fd, env);
+		children(argv, p_fd, env);
 	pid2 = fork();
 	if (pid2 == -1)
 		exit(1);

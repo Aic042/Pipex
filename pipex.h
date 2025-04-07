@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 12:01:02 by root              #+#    #+#             */
-/*   Updated: 2025/04/04 10:40:33 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:18:16 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <string.h>
 # include <stdio.h>
 # include <sys/wait.h>
-# include <errno.h>
 # include "libft/libft.h"
+# include <errno.h>
 
 void	ft_init_pipex(int *p_fd, char **argv);
 void	ft_check_args(int argc, char **argv);

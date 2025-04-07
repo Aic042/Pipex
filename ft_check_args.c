@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:12 by root              #+#    #+#             */
-/*   Updated: 2025/04/04 11:58:28 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:53:01 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void	ft_check_outfile_permissions(const char *file)
 	{
 		if (access(file, W_OK) == -1)
 		{
-			perror("Error");
-			// exit(EXIT_FAILURE);
+			ft_putstr_fd("pipex: ", 2);
+			ft_putstr_fd(file, 2);
+			ft_putendl_fd(": Permission denied", 2);
+			exit(1);
 		}
 	}
 	else
@@ -40,7 +42,6 @@ void	ft_check_outfile_permissions(const char *file)
 		if (fd == -1)
 		{
 			perror("Error");
-			exit(EXIT_FAILURE);
 		}
 		close(fd);
 	}
