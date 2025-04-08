@@ -7,6 +7,8 @@
 		"cstdlib": "c",
 		"unistd.h": "c",
 		"stdio.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"wait.h": "c",
+		"environments.h": "c"
 	}
 }
