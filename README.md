@@ -133,5 +133,4 @@ main()
 - [Guia sobre Pipex]https://reactive.so/post/42-a-comprehensive-guide-to-pipex/
 ---
 
-**Autor:** [Chatgpt me esta ayudando mucho pero soy, el autor, Álvaro]
-
+Errores: Quitando el path, no maneja comandos vacios, leaks y errores con el sleep 3. mal :(
