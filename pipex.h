@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 12:01:02 by root              #+#    #+#             */
-/*   Updated: 2025/04/09 10:35:05 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:34:30 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_init_pipex(int *p_fd, char **argv);
 void	ft_check_args(int argc, char **argv);
 void	ft_parse_cmds(char **argv, char **env, int *p_fd);
 void	ft_cleanup(int infile, int outfile, int *p_fd);
-void	ft_check_outfile_permissions(const char *file);	
+void	ft_check_outfile_permissions(const char *file);
 void	parent(char **argv, int *p_fd, char **env);
 void	children(char **argv, int *p_fd, char **env);
 void	exec(char *cmd, char **env);

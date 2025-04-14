@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:24:35 by root              #+#    #+#             */
-/*   Updated: 2025/04/10 12:14:49 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:17:27 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,15 @@ char	*path_finder(char *cmd, char **env)
 	char	**allpath;
 	char	**s_cmd;
 	char	*path_part;
+	char	*path_env;
 
 	i = 0;
+	path_env = get_env("PATH", env);
+	if(!path_env || !*path_env)
+	{
+		ft_putstr_fd("pipex: Path not found", 2);
+		exit(127);
+	}
 	allpath = ft_split(get_env("PATH", env), ':');
 	s_cmd = ft_split(cmd, ' ');
 	while (allpath[i])
@@ -31,6 +38,7 @@ char	*path_finder(char *cmd, char **env)
 		if (access(exec, F_OK | X_OK) == 0)
 		{
 			ft_free_str(s_cmd);
+			ft_free_str(allpath);
 			return (exec);
 		}
 		free(exec);
@@ -40,6 +48,7 @@ char	*path_finder(char *cmd, char **env)
 	ft_free_str(s_cmd);
 	return (cmd);
 }
+
 
 void	exec(char *cmd, char **env)
 {
