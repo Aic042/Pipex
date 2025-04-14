@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:24:35 by root              #+#    #+#             */
-/*   Updated: 2025/04/14 11:17:27 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/14 12:17:20 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*path_finder(char *cmd, char **env)
 	path_env = get_env("PATH", env);
 	if(!path_env || !*path_env)
 	{
-		ft_putstr_fd("pipex: Path not found", 2);
+		ft_putstr_fd("pipex: Path not found", 1);
 		exit(127);
 	}
 	allpath = ft_split(get_env("PATH", env), ':');

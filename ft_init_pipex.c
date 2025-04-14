@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:04 by root              #+#    #+#             */
-/*   Updated: 2025/04/08 11:53:14 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/14 12:28:48 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	children(char **argv, int *p_fd, char **env)
 		ft_putendl_fd(": No such file or directory", 2);
 		exit(1);
 	}
+	if (ft_strlen(argv[2]) == 0 || ft_strlen(argv[2]) == 1)
+	{
+		ft_printf("Error: Command 1 is empty\n");
+		exit(127);
+	}
 	if (dup2(fd, STDIN_FILENO) == -1)
 		exit(1);
 	if (dup2(p_fd[1], STDOUT_FILENO) == -1)
@@ -54,6 +59,11 @@ void	parent(char **argv, int *p_fd, char **env)
 		close(p_fd[0]);
 		close(p_fd[1]);
 		exit(1);
+	}
+	if (ft_strlen(argv[3]) == 0 || ft_strlen(argv[3]) == 1)
+	{
+		ft_printf("Error: Command 2 is empty\n");
+		exit(127);
 	}
 	if (dup2(p_fd[0], STDIN_FILENO) == -1)
 		exit(1);
