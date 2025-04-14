@@ -1,19 +1,24 @@
-42_pipex_tester
-a.out
-comm_exec.c
-comm_exec.o
-ft_check_args.c
-ft_check_args.o
-ft_cleanup.c
-ft_cleanup.o
-ft_init_pipex.c
-ft_init_pipex.o
-infile
-libft
-Makefile
-outfile
-pipex
-pipex.c
-pipex.h
-pipex.o
-README.md
+total 160$
+drwxr-xr-x  6 root root  4096 Apr 14 22:52 .$
+drwxr-xr-x 19 root root  4096 Mar 24 07:42 ..$
+drwxr-xr-x  8 root root  4096 Apr 14 18:31 .git$
+drwxr-xr-x  2 root root  4096 Apr  8 17:45 .vscode$
+drwxr-xr-x  5 root root  4096 Apr 14 22:04 42_pipex_tester$
+-rwxr-xr-x  1 root root  1695 Apr  8 17:45 Makefile$
+-rw-r--r--  1 root root  3573 Apr 14 18:31 README.md$
+-rw-r--r--  1 root root     0 Apr 14 18:31 a.out$
+-rw-r--r--  1 root root  2397 Apr 14 22:02 comm_exec.c$
+-rw-r--r--  1 root root 11640 Apr 14 22:49 comm_exec.o$
+-rw-r--r--  1 root root  2019 Apr 14 18:31 ft_check_args.c$
+-rw-r--r--  1 root root 10576 Apr 14 22:49 ft_check_args.o$
+-rw-r--r--  1 root root  1206 Apr  2 23:07 ft_cleanup.c$
+-rw-r--r--  1 root root  5648 Apr 14 22:49 ft_cleanup.o$
+-rw-r--r--  1 root root  2249 Apr 14 18:31 ft_init_pipex.c$
+-rw-r--r--  1 root root 13384 Apr 14 22:49 ft_init_pipex.o$
+--w-------  1 root root     0 Apr 14 22:52 infile$
+drwxr-xr-x  2 root root  4096 Apr 14 22:49 libft$
+-rw-r--r--  1 root root     0 Apr 14 22:52 outfile$
+-rwxr-xr-x  1 root root 46984 Apr 14 22:49 pipex$
+-rw-r--r--  1 root root  1393 Apr 14 18:31 pipex.c$
+-rw-r--r--  1 root root  1656 Apr 14 22:03 pipex.h$
+-rw-r--r--  1 root root  7552 Apr 14 22:49 pipex.o$

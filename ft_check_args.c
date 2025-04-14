@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:12 by root              #+#    #+#             */
-/*   Updated: 2025/04/14 12:24:27 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:53:28 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,7 @@ void	ft_check_args(int argc, char **argv)
 		ft_printf("Argument error: Usage: ./pipex infile cmd1 cmd2 outfile\n");
 		exit(1);
 	}
-	// if (ft_strlen(argv[2]) == 0 || ft_strlen(argv[2]) == 1)
-	// {
-	// 	ft_printf("Error: Command 1 is empty\n");
-	// 	exit(127);
-	// }
-	// if (ft_strlen(argv[3]) == 0 || ft_strlen(argv[3]) == 1)
-	// {
-	// 	ft_printf("Error: Command 2 is empty\n");
-	// 	exit(127);
-	// }
-	if (
-		ft_isspace(argv[2][0]) == 1 || ft_isspace(argv[3][0]) == 1)
+	if (ft_isspace(argv[2][0]) == 1 || ft_isspace(argv[3][0]) == 1)
 	{
 		ft_printf("Error: Command 1/2 has space first\n");
 		exit(127);

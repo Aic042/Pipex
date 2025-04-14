@@ -3,33 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   comm_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:24:35 by root              #+#    #+#             */
-/*   Updated: 2025/04/14 12:17:20 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:55:44 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*path_finder(char *cmd, char **env)
+char	*path_finder(char **s_cmd, char **env)
 {
 	int		i;
 	char	*exec;
 	char	**allpath;
-	char	**s_cmd;
 	char	*path_part;
 	char	*path_env;
 
 	i = 0;
 	path_env = get_env("PATH", env);
-	if(!path_env || !*path_env)
+	if (!path_env || !*path_env)
 	{
-		ft_putstr_fd("pipex: Path not found", 1);
-		exit(127);
+		ft_putstr_fd("pipex: Path not found", 2);
+		return (NULL);
 	}
-	allpath = ft_split(get_env("PATH", env), ':');
-	s_cmd = ft_split(cmd, ' ');
+	allpath = ft_split(path_env, ':');
 	while (allpath[i])
 	{
 		path_part = ft_strjoin(allpath[i], "/");
@@ -37,7 +35,6 @@ char	*path_finder(char *cmd, char **env)
 		free(path_part);
 		if (access(exec, F_OK | X_OK) == 0)
 		{
-			ft_free_str(s_cmd);
 			ft_free_str(allpath);
 			return (exec);
 		}
@@ -45,23 +42,29 @@ char	*path_finder(char *cmd, char **env)
 		i++;
 	}
 	ft_free_str(allpath);
-	ft_free_str(s_cmd);
-	return (cmd);
+	return (NULL);
 }
-
 
 void	exec(char *cmd, char **env)
 {
-	char	**s_cmd;
-	char	*path;
+	char **s_cmd;
+	char *path;
 
 	s_cmd = ft_split(cmd, ' ');
-	path = path_finder(s_cmd[0], env);
-	if (execve(path, s_cmd, env) == -1)
+	path = path_finder(s_cmd, env);
+	if (!path)
 	{
-		ft_putstr_fd("pipex: command not found : ", 2);
+		ft_putstr_fd("pipex: command not found: ", 2);
 		ft_putendl_fd(s_cmd[0], 2);
 		ft_free_str(s_cmd);
+		exit(127);
+	}
+	if (execve(path, s_cmd, env) == -1)
+	{
+		ft_putstr_fd("pipex: command not found: ", 2);
+		ft_putendl_fd(s_cmd[0], 2);
+		ft_free_str(s_cmd);
+		free(path);
 		exit(127);
 	}
 }
