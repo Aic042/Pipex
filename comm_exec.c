@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   comm_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:24:35 by root              #+#    #+#             */
-/*   Updated: 2025/04/14 22:55:44 by root             ###   ########.fr       */
+/*   Updated: 2025/04/15 13:06:15 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@ char	*path_finder(char **s_cmd, char **env)
 	char	*exec;
 	char	**allpath;
 	char	*path_part;
-	char	*path_env;
 
-	i = 0;
-	path_env = get_env("PATH", env);
-	if (!path_env || !*path_env)
+	if (ft_strchr(s_cmd[0], '/'))
 	{
-		ft_putstr_fd("pipex: Path not found", 2);
+		if (access(s_cmd[0], F_OK | X_OK) == 0)
+			return (ft_strdup(s_cmd[0]));
 		return (NULL);
 	}
-	allpath = ft_split(path_env, ':');
-	while (allpath[i])
+	allpath = ft_split(get_env("PATH", env), ':');
+	if (!allpath)
+		return (NULL);
+	i = -1;
+	while (allpath[++i])
 	{
 		path_part = ft_strjoin(allpath[i], "/");
 		exec = ft_strjoin(path_part, s_cmd[0]);
@@ -39,7 +40,6 @@ char	*path_finder(char **s_cmd, char **env)
 			return (exec);
 		}
 		free(exec);
-		i++;
 	}
 	ft_free_str(allpath);
 	return (NULL);

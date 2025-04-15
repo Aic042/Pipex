@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:26:50 by aingunza          #+#    #+#             */
-/*   Updated: 2025/04/07 12:04:47 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/15 11:29:25 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ void	ft_putstr_fd(const char *s, int fd)
 	i = 0;
 	if (!s)
 		return ;
-	while (s[i])
-	{
-		ft_putchar_fd(s[i], fd);
-		i++;
-	}
+	else
+		write(fd, s, ft_strlen(s));
 }

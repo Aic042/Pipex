@@ -24,6 +24,7 @@ all: loading  libft $(NAME) fun_msg
 	@echo "██║     ██║██║     ███████╗██╔╝ ██╗"
 	@echo "╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝"
 	@echo "$(RESET)"
+
 loading:
 	@echo -n "Building"; for i in {1..3}; do sleep 0.3; echo -n "."; done; echo " 🚀"
 
@@ -52,4 +53,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re libft % 
+.PHONY: all clean fclean re libft 
