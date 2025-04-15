@@ -6,18 +6,35 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:24:35 by root              #+#    #+#             */
-/*   Updated: 2025/04/15 13:06:15 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:07:37 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*path_finder(char **s_cmd, char **env)
+char	*path_finder_utils(char *cmd, char **allpath)
 {
 	int		i;
 	char	*exec;
-	char	**allpath;
 	char	*path_part;
+
+	i = -1;
+	while (allpath[++i])
+	{
+		path_part = ft_strjoin(allpath[i], "/");
+		exec = ft_strjoin(path_part, cmd);
+		free(path_part);
+		if (access(exec, F_OK | X_OK) == 0)
+			return (exec);
+		free(exec);
+	}
+	return (NULL);
+}
+
+char	*path_finder(char **s_cmd, char **env)
+{
+	char	**allpath;
+	char	*result;
 
 	if (ft_strchr(s_cmd[0], '/'))
 	{
@@ -28,27 +45,15 @@ char	*path_finder(char **s_cmd, char **env)
 	allpath = ft_split(get_env("PATH", env), ':');
 	if (!allpath)
 		return (NULL);
-	i = -1;
-	while (allpath[++i])
-	{
-		path_part = ft_strjoin(allpath[i], "/");
-		exec = ft_strjoin(path_part, s_cmd[0]);
-		free(path_part);
-		if (access(exec, F_OK | X_OK) == 0)
-		{
-			ft_free_str(allpath);
-			return (exec);
-		}
-		free(exec);
-	}
+	result = path_finder_utils(s_cmd[0], allpath);
 	ft_free_str(allpath);
-	return (NULL);
+	return (result);
 }
 
 void	exec(char *cmd, char **env)
 {
-	char **s_cmd;
-	char *path;
+	char	**s_cmd;
+	char	*path;
 
 	s_cmd = ft_split(cmd, ' ');
 	path = path_finder(s_cmd, env);

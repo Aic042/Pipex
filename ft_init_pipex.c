@@ -6,7 +6,7 @@
 /*   By: aingunza <aingunza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 20:46:04 by root              #+#    #+#             */
-/*   Updated: 2025/04/14 12:28:48 by aingunza         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:40:40 by aingunza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ void	parent(char **argv, int *p_fd, char **env)
 	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 	{
-		ft_putstr_fd("pipex: ", 2);
-		ft_putstr_fd(argv[4], 2);
-		ft_putendl_fd(": Permission denied", 2);
+		perror("pipex: Output file");
 		close(p_fd[0]);
 		close(p_fd[1]);
 		exit(1);
